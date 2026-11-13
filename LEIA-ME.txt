@@ -1,0 +1,38 @@
+CINE LOCAL — PROJETO ORGANIZADO E COMENTADO
+
+Os arquivos JavaScript foram organizados por responsabilidade e receberam comentários em português.
+Funções sem utilização identificadas durante a revisão foram removidas.
+O visual e os recursos existentes foram preservados.
+
+Arquivos principais:
+- index.html / style.css / script.js: página inicial, catálogo, detalhes, escolha da data e assentos.
+- conta.html / conta.js: cadastro e login.
+- checkout.html / checkout.js: finalização simulada da compra e ingresso.
+- meus-ingressos.html / meus-ingressos.js: histórico de ingressos.
+
+PROGRAMAÇÃO DA ÚNICA SALA (TODOS OS DIAS):
+- 14:00 — Toy Story 5
+- 17:00 — Cara de Barro
+- 20:00 — Homem-Aranha: Um Novo Dia
+
+O cliente escolhe uma data no detalhe do filme. O sistema impede datas passadas e horários que já passaram no dia atual. A ocupação das cadeiras é separada por data e horário. A data também é registrada no checkout, no ingresso e no histórico.
+
+IDENTIDADE VISUAL:
+- Azul principal: #2C82B5
+- Azul profundo: #015C91
+- Azul claro: #88CDF6
+- Azul suave: #BCE5FF
+
+COMO EXECUTAR:
+Abra a pasta no VS Code e use a extensão Live Server para abrir index.html.
+
+OBSERVAÇÃO:
+O projeto utiliza localStorage. As reservas ficam armazenadas apenas no navegador/dispositivo utilizado; ainda não existe sincronização entre clientes diferentes. O pagamento continua sendo uma simulação acadêmica.
+
+PAINEL ADMINISTRATIVO:
+- Abra admin.html para acessar a área administrativa.
+- Login demonstrativo: admin
+- Senha demonstrativa: cinelocal2026
+- O painel possui visão geral, cadastro/edição/exclusão de filmes, programação diária, reservas e relatórios.
+- Filmes e horários alterados no painel são salvos em localStorage e passam a ser lidos pela página principal no mesmo navegador.
+- As vendas e reservas exibidas são as que foram geradas no mesmo navegador/dispositivo. Para um sistema real, não use este login demonstrativo: implemente autenticação segura e banco de dados compartilhado.

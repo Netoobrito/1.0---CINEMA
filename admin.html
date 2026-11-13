@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Administra&ccedil;&atilde;o | Cine Local
+  </title>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+ </head>
+ <body class="admin-body">
+  <header class="header admin-header">
+   <a class="logo" href="index.html">
+    CINE
+    <span>
+     LOCAL
+    </span>
+   </a>
+   <nav>
+    <a href="index.html">
+     Ver site
+    </a>
+    <button class="btn-login" hidden="" id="sair-admin" type="button">
+     Sair
+    </button>
+   </nav>
+  </header>
+  <main class="admin-main">
+   <section class="admin-login-card" id="admin-login">
+    <span class="tag">
+     &Aacute;REA RESTRITA
+    </span>
+    <h1>
+     Painel administrativo
+    </h1>
+    <p>
+     Acesse para gerenciar o Cine Local.
+    </p>
+    <form class="admin-form" id="form-admin-login">
+     <label for="admin-usuario">
+      Usu&aacute;rio
+     </label>
+     <input autocomplete="username" id="admin-usuario" required=""/>
+     <label for="admin-senha">
+      Senha
+     </label>
+     <input autocomplete="current-password" id="admin-senha" required="" type="password"/>
+     <p aria-live="polite" class="admin-message" id="admin-login-msg">
+     </p>
+     <button class="btn-primary" type="submit">
+      Entrar no painel
+     </button>
+    </form>
+    <div class="admin-demo-note">
+     <strong>
+      Acesso demonstrativo
+     </strong>
+     <br/>
+     Usu&aacute;rio:
+     <b>
+      admin
+     </b>
+     &middot; Senha:
+     <b>
+      cinelocal2026
+     </b>
+     <br/>
+     Este acesso &eacute; apenas para apresenta&ccedil;&atilde;o acad&ecirc;mica.
+    </div>
+   </section>
+   <section class="hidden" id="admin-app">
+    <div class="admin-welcome">
+     <div>
+      <span class="tag">
+       CENTRAL DE CONTROLE
+      </span>
+      <h1>
+       Painel administrativo
+      </h1>
+      <p>
+       Gerencie filmes, sess&otilde;es e acompanhe as vendas.
+      </p>
+     </div>
+     <span class="admin-live">
+      ● Ambiente local
+     </span>
+    </div>
+    <nav aria-label="Se&ccedil;&otilde;es administrativas" class="admin-tabs">
+     <button class="active" data-tab="dashboard">
+      Vis&atilde;o geral
+     </button>
+     <button data-tab="filmes">
+      Filmes
+     </button>
+     <button data-tab="programacao">
+      Programa&ccedil;&atilde;o
+     </button>
+     <button data-tab="reservas">
+      Reservas
+     </button>
+     <button data-tab="relatorios">
+      Relat&oacute;rios
+     </button>
+    </nav>
+    <section class="admin-tab-content" id="tab-dashboard">
+     <div class="admin-stats" id="admin-stats">
+     </div>
+     <div class="admin-panel">
+      <div class="admin-panel-heading">
+       <div>
+        <h2>
+         Vendas recentes
+        </h2>
+        <p>
+         &Uacute;ltimos pedidos registrados neste navegador.
+        </p>
+       </div>
+       <button class="admin-secondary" data-go="reservas">
+        Ver todas
+       </button>
+      </div>
+      <div id="dashboard-recentes">
+      </div>
+     </div>
+    </section>
+    <section class="admin-tab-content hidden" id="tab-filmes">
+     <div class="admin-panel">
+      <div class="admin-panel-heading">
+       <div>
+        <h2>
+         Cat&aacute;logo de filmes
+        </h2>
+        <p>
+         Adicione, edite ou remova t&iacute;tulos do cat&aacute;logo.
+        </p>
+       </div>
+       <button class="btn-primary admin-add" id="novo-filme">
+        + Novo filme
+       </button>
+      </div>
+      <form class="admin-edit-form hidden" id="form-filme">
+       <h3 id="form-filme-titulo">
+        Novo filme
+       </h3>
+       <input id="filme-id" type="hidden"/>
+       <div class="admin-form-grid">
+        <label>
+         Nome do filme
+         <input id="filme-nome" required=""/>
+        </label>
+        <label>
+         G&ecirc;nero
+         <input id="filme-genero" required=""/>
+        </label>
+        <label>
+         Classifica&ccedil;&atilde;o
+         <input id="filme-classificacao" value="A definir"/>
+        </label>
+        <label>
+         URL do p&ocirc;ster
+         <input id="filme-poster" placeholder="https://..." type="url"/>
+        </label>
+        <label class="admin-full">
+         Sinopse
+         <textarea id="filme-sinopse" required="" rows="3"></textarea>
+        </label>
+        <label class="admin-full">
+         Link do trailer
+         <input id="filme-trailer" placeholder="https://..." type="url"/>
+        </label>
+       </div>
+       <div class="admin-form-actions">
+        <button class="btn-primary" type="submit">
+         Salvar filme
+        </button>
+        <button class="admin-secondary" id="cancelar-filme" type="button">
+         Cancelar
+        </button>
+       </div>
+      </form>
+      <div class="admin-movie-list" id="admin-lista-filmes">
+      </div>
+     </div>
+    </section>
+    <section class="admin-tab-content hidden" id="tab-programacao">
+     <div class="admin-panel">
+      <h2>
+       Programa&ccedil;&atilde;o da sala
+      </h2>
+      <p>
+       Defina o hor&aacute;rio de exibi&ccedil;&atilde;o de cada filme. A programa&ccedil;&atilde;o &eacute; di&aacute;ria e considera uma &uacute;nica sala.
+      </p>
+      <form id="form-programacao">
+       <div class="admin-schedule-list" id="admin-horarios">
+       </div>
+       <button class="btn-primary" type="submit">
+        Salvar programa&ccedil;&atilde;o
+       </button>
+       <p aria-live="polite" class="admin-message" id="programacao-msg">
+       </p>
+      </form>
+     </div>
+    </section>
+    <section class="admin-tab-content hidden" id="tab-reservas">
+     <div class="admin-panel">
+      <div class="admin-panel-heading">
+       <div>
+        <h2>
+         Reservas e pedidos
+        </h2>
+        <p>
+         Compras confirmadas registradas no armazenamento local.
+        </p>
+       </div>
+      </div>
+      <div class="admin-table-wrap" id="admin-tabela-reservas">
+      </div>
+     </div>
+    </section>
+    <section class="admin-tab-content hidden" id="tab-relatorios">
+     <div class="admin-panel">
+      <h2>
+       Relat&oacute;rios
+      </h2>
+      <p>
+       Resumo calculado a partir dos pedidos salvos neste navegador.
+      </p>
+      <div class="admin-report-grid" id="admin-relatorios">
+      </div>
+      <div class="admin-panel-heading admin-report-heading">
+       <h3>
+        Vendas por filme
+       </h3>
+      </div>
+      <div id="admin-vendas-filmes">
+      </div>
+     </div>
+    </section>
+    <p class="admin-footnote">
+     Os dados s&atilde;o armazenados neste navegador (localStorage). Para uso real com v&aacute;rios clientes, ser&aacute; necess&aacute;rio conectar um banco de dados e autentica&ccedil;&atilde;o segura.
+    </p>
+   </section>
+  </main>
+  <script src="admin.js">
+  </script>
+ </body>
+</html>
