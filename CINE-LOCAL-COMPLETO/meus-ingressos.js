@@ -3,7 +3,7 @@
    Exibe somente os pedidos associados à conta autenticada.
    ========================================================= */
 
-const usuario = JSON.parse(localStorage.getItem("cineLocalUsuarioLogado") || "null");
+const usuario = CineLocal.ler(CineLocal.CHAVES.usuario, null);
 const areaIngressos = document.getElementById("lista-ingressos");
 
 function escaparHTML(valor) {
@@ -27,7 +27,7 @@ if (!usuario) {
 } else {
   document.getElementById("boas-vindas").textContent = `Olá, ${usuario.nome}! Aqui estão os ingressos da conta ${usuario.email}.`;
 
-  const pedidos = JSON.parse(localStorage.getItem("cineLocalPedidos") || "[]");
+  const pedidos = CineLocal.ler(CineLocal.CHAVES.pedidos, []);
   const meusPedidos = pedidos
     .filter(pedido => String(pedido.cliente?.email || "").toLowerCase() === usuario.email.toLowerCase())
     .sort((a, b) => new Date(b.data) - new Date(a.data));

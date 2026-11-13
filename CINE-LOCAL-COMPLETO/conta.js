@@ -13,7 +13,7 @@ const tabCadastro = document.getElementById("tab-cadastro");
 const mensagem = document.getElementById("mensagem-conta");
 
 function usuariosSalvos() {
-  return JSON.parse(localStorage.getItem(CHAVE_USUARIOS) || "[]");
+  return CineLocal.ler(CHAVE_USUARIOS, []);
 }
 
 function mostrarAba(aba) {
@@ -65,11 +65,9 @@ formLogin.addEventListener("submit", evento => {
     return;
   }
 
-  localStorage.setItem(CHAVE_SESSAO, JSON.stringify({
-    nome: usuario.nome,
-    email: usuario.email,
-    cpf: usuario.cpf
-  }));
+  CineLocal.salvar(CHAVE_SESSAO, {
+    nome: usuario.nome, email: usuario.email, cpf: usuario.cpf
+  });
   window.location.href = destinoAposLogin();
 });
 
@@ -99,8 +97,8 @@ formCadastro.addEventListener("submit", evento => {
 
   const usuario = { nome, email, cpf, senha };
   usuarios.push(usuario);
-  localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuarios));
-  localStorage.setItem(CHAVE_SESSAO, JSON.stringify({ nome, email, cpf }));
+  CineLocal.salvar(CHAVE_USUARIOS, usuarios);
+  CineLocal.salvar(CHAVE_SESSAO, { nome, email, cpf });
 
   mensagem.textContent = "Cadastro realizado! Redirecionando...";
   mensagem.className = "account-message success";

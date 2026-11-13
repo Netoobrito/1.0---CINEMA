@@ -38,9 +38,9 @@ let horariosPorFilme = { 3: "14:00", 1: "17:00", 2: "20:00" };
 
 // Permite que o painel administrativo atualize catálogo e horários no mesmo navegador.
 try {
-  const filmesSalvos = JSON.parse(localStorage.getItem("cineLocalFilmes") || "null");
-  const horariosSalvos = JSON.parse(localStorage.getItem("cineLocalHorarios") || "null");
-  if (Array.isArray(filmesSalvos) && filmesSalvos.length) filmes = filmesSalvos;
+  const filmesSalvos = CineLocal.ler(CineLocal.CHAVES.filmes, null);
+  const horariosSalvos = CineLocal.ler(CineLocal.CHAVES.horarios, null);
+  if (Array.isArray(filmesSalvos)) filmes = filmesSalvos;
   if (horariosSalvos && typeof horariosSalvos === "object") horariosPorFilme = { ...horariosPorFilme, ...horariosSalvos };
 } catch (erro) { console.warn("Não foi possível carregar os dados administrativos.", erro); }
 const valorIngresso = 15;
@@ -49,30 +49,12 @@ const lista = document.getElementById("lista-filmes");
 let filmeAtual = null;
 let sessaoAtual = null;
 let cadeirasSelecionadas = [];
-let dataSessaoAtual = dataLocalISO(new Date());
+let dataSessaoAtual = CineLocal.dataISO(new Date());
 const letrasFileiras = ["A", "B", "C", "D", "E"];
 
-function dataLocalISO(data) {
-  const ano = data.getFullYear();
-  const mes = String(data.getMonth() + 1).padStart(2, "0");
-  const dia = String(data.getDate()).padStart(2, "0");
-  return `${ano}-${mes}-${dia}`;
-}
-
-function formatarData(dataISO) {
-  if (!dataISO) return "Data não informada";
-  const [ano, mes, dia] = dataISO.split("-").map(Number);
-  return new Date(ano, mes - 1, dia).toLocaleDateString("pt-BR", {
-    weekday: "long", day: "2-digit", month: "long", year: "numeric"
-  });
-}
-
-function sessaoJaPassou(dataISO, horario) {
-  if (dataISO !== dataLocalISO(new Date())) return false;
-  const [hora, minuto] = horario.split(":").map(Number);
-  const agora = new Date();
-  return agora.getHours() * 60 + agora.getMinutes() >= hora * 60 + minuto;
-}
+const dataLocalISO = CineLocal.dataISO;
+const formatarData = CineLocal.formatarData;
+const sessaoJaPassou = (dataISO, horario) => CineLocal.sessaoEncerrada(dataISO, horario);
 
 function atualizarDisponibilidadeDaSessao() {
   const campo = document.getElementById("data-sessao");
@@ -91,18 +73,18 @@ function atualizarDisponibilidadeDaSessao() {
 function carregarFilmes() {
   if (!lista) return;
   lista.innerHTML = "";
-  const ordemProgramacao = [3, 1, 2];
-  [...filmes].sort((a, b) => ordemProgramacao.indexOf(a.id) - ordemProgramacao.indexOf(b.id)).forEach(filme => {
+  // Ordena filmes pela sessão, inclusive os cadastrados no painel administrativo.
+  [...filmes].filter(filme => horariosPorFilme[filme.id]).sort((a, b) => CineLocal.horarioEmMinutos(horariosPorFilme[a.id]) - CineLocal.horarioEmMinutos(horariosPorFilme[b.id])).forEach(filme => {
     const card = document.createElement("article");
     card.className = "filme-card";
     card.innerHTML = `
       <div class="filme-poster">
-        <img src="${filme.poster}" alt="Pôster de ${filme.nome}" loading="lazy"
+        <img src="${CineLocal.escaparHTML(filme.poster)}" alt="Pôster de ${CineLocal.escaparHTML(filme.nome)}" loading="lazy"
           onerror="this.parentElement.classList.add('poster-erro'); this.remove();">
       </div>
       <div class="filme-info">
-        <h3>${filme.nome}</h3>
-        <p>${filme.genero} · ${filme.classificacao}</p>
+        <h3>${CineLocal.escaparHTML(filme.nome)}</h3>
+        <p>${CineLocal.escaparHTML(filme.genero)} · ${CineLocal.escaparHTML(filme.classificacao)}</p>
         <button class="btn-detalhes" onclick="abrirDetalhes(${filme.id})">Ver detalhes</button>
       </div>`;
     lista.appendChild(card);
@@ -116,18 +98,23 @@ function esconderTodasAsSecoes() {
   });
 }
 
+// A página inicial mantém o catálogo visível logo abaixo da apresentação.
 function inicio() {
-  esconderTodasAsSecoes();
   document.getElementById("inicio").classList.remove("hidden");
+  document.getElementById("filmes").classList.remove("hidden");
+  document.getElementById("detalhes").classList.add("hidden");
+  document.getElementById("assentos").classList.add("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+// "Filmes" e "Conhecer filmes" são apenas atalhos de rolagem para o catálogo.
+// Ao voltar da tela de detalhes, restaura a página principal antes de rolar.
 function mostrarFilmes() {
   document.getElementById("inicio").classList.remove("hidden");
   document.getElementById("filmes").classList.remove("hidden");
   document.getElementById("detalhes").classList.add("hidden");
   document.getElementById("assentos").classList.add("hidden");
-  setTimeout(() => document.getElementById("filmes").scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+  document.getElementById("filmes").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function abrirDetalhes(id) {
@@ -143,11 +130,11 @@ function abrirDetalhes(id) {
   document.getElementById("conteudo-detalhes").innerHTML = `
     <div class="detalhes-conteudo">
       <span class="tag">FILME EM CARTAZ</span>
-      <h2>${filme.nome}</h2>
-      <p><strong>Gênero:</strong> ${filme.genero}</p>
-      <p><strong>Classificação:</strong> ${filme.classificacao}</p>
-      <h3>Sinopse</h3><p>${filme.sinopse}</p>
-      <a class="btn-trailer" href="${filme.trailer}" target="_blank" rel="noopener noreferrer">▶ Assistir trailer</a>
+      <h2>${CineLocal.escaparHTML(filme.nome)}</h2>
+      <p><strong>Gênero:</strong> ${CineLocal.escaparHTML(filme.genero)}</p>
+      <p><strong>Classificação:</strong> ${CineLocal.escaparHTML(filme.classificacao)}</p>
+      <h3>Sinopse</h3><p>${CineLocal.escaparHTML(filme.sinopse)}</p>
+      <a class="btn-trailer" href="${CineLocal.escaparHTML(filme.trailer)}" target="_blank" rel="noopener noreferrer">▶ Assistir trailer</a>
       <div class="programacao-filme">
         <h3>Escolha o dia em que deseja assistir</h3>
         <p>Este filme é exibido todos os dias às <strong>${horario}</strong>.</p>
@@ -177,7 +164,7 @@ function chaveOcupacao() {
 }
 
 function buscarCadeirasOcupadas() {
-  const ocupacao = JSON.parse(localStorage.getItem("cineLocalAssentos") || "{}");
+  const ocupacao = CineLocal.ler(CineLocal.CHAVES.assentos, {});
   return ocupacao[chaveOcupacao()] || [];
 }
 
@@ -214,6 +201,8 @@ function criarMapaAssentos() {
       cadeira.className = "assento";
       cadeira.textContent = nomeCadeira;
       cadeira.type = "button";
+      cadeira.setAttribute("aria-pressed", "false");
+      cadeira.setAttribute("aria-label", `Cadeira ${nomeCadeira}`);
       if (ocupadas.includes(nomeCadeira)) {
         cadeira.classList.add("ocupado");
         cadeira.disabled = true;
@@ -239,7 +228,9 @@ function selecionarCadeira(nomeCadeira) {
 
 function atualizarMapa() {
   document.querySelectorAll(".assento").forEach(cadeira => {
-    cadeira.classList.toggle("selecionado", cadeirasSelecionadas.includes(cadeira.textContent));
+    const selecionada = cadeirasSelecionadas.includes(cadeira.textContent);
+    cadeira.classList.toggle("selecionado", selecionada);
+    cadeira.setAttribute("aria-pressed", String(selecionada));
   });
 }
 
@@ -253,7 +244,7 @@ function atualizarResumo() {
 }
 
 function continuarCompra() {
-  if (!filmeAtual || !sessaoAtual || !dataSessaoAtual || cadeirasSelecionadas.length === 0) {
+  if (!filmeAtual || !sessaoAtual || !dataSessaoAtual || cadeirasSelecionadas.length === 0 || sessaoJaPassou(dataSessaoAtual, sessaoAtual)) {
     alert("Selecione pelo menos uma cadeira antes de continuar.");
     return;
   }
@@ -270,7 +261,7 @@ function continuarCompra() {
     criadaEm: new Date().toISOString()
   };
 
-  localStorage.setItem("cineLocalCompraPendente", JSON.stringify(compra));
+  CineLocal.salvar(CineLocal.CHAVES.compra, compra);
 
   const usuarioLogado = JSON.parse(localStorage.getItem("cineLocalUsuarioLogado") || "null");
   if (usuarioLogado) {
@@ -308,7 +299,7 @@ function restaurarSelecaoDoCheckout() {
   document.getElementById("data-sessao").value = dataSessaoAtual;
   atualizarDisponibilidadeDaSessao();
   abrirAssentos(compraSalva.sessao);
-  cadeirasSelecionadas = [...compraSalva.cadeiras];
+  cadeirasSelecionadas = compraSalva.cadeiras.filter(c => !buscarCadeirasOcupadas().includes(c));
   atualizarMapa();
   atualizarResumo();
 

@@ -46,18 +46,8 @@ const horariosPadrao = { 3: "14:00", 1: "17:00", 2: "20:00" };
 const buscarElemento = id => document.getElementById(id);
 
 // Lê informações do localStorage sem interromper a página caso haja JSON inválido.
-function lerArmazenamento(chave, valorPadrao) {
-  try {
-    return JSON.parse(localStorage.getItem(chave)) ?? valorPadrao;
-  } catch {
-    return valorPadrao;
-  }
-}
-
-// Salva qualquer informação no armazenamento local do navegador.
-function salvarArmazenamento(chave, valor) {
-  localStorage.setItem(chave, JSON.stringify(valor));
-}
+const lerArmazenamento = CineLocal.ler;
+const salvarArmazenamento = CineLocal.salvar;
 
 // Formata valores e textos antes de exibi-los na interface.
 function formatarMoeda(valor) {
@@ -260,6 +250,8 @@ function excluirFilme(id) {
   if (!filme || !confirm(`Excluir “${filme.nome}” do catálogo?`)) return;
 
   filmes = filmes.filter(item => item.id !== id);
+  delete horarios[id];
+  salvarArmazenamento(STORAGE.horarios, horarios);
   salvarArmazenamento(STORAGE.filmes, filmes);
   renderizarFilmes();
   renderizarProgramacao();

@@ -1623,3 +1623,302 @@ footer small strong  {
     font-size:11px
   }
 }
+
+
+/* ===== IDENTIDADE VISUAL UNIFICADA (v2) ===== */
+/* CINE LOCAL | Refinamento visual v2
+   Mantém a identidade azul e o tema escuro originais. */
+:root {
+  --background: #071521;
+  --surface: #10283A;
+  --blue: #2C82B5;
+  --white: #FFFFFF;
+  --muted: #AFC7D8;
+  --blue-deep: #015C91;
+  --blue-light: #88CDF6;
+  --blue-soft: #BCE5FF;
+  --surface-raised: #143247;
+  --stroke: rgba(136, 205, 246, .16);
+  --shadow: 0 22px 55px rgba(0, 0, 0, .22);
+  --radius: 18px;
+  --transition: 180ms ease;
+}
+html { scroll-padding-top: 105px; }
+body {
+  color: var(--white);
+  background:
+    radial-gradient(circle at 96% 0%, rgba(44,130,181,.12), transparent 34rem),
+    var(--background);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+button, input, select, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--blue-light);
+  outline-offset: 3px;
+}
+::selection { background: var(--blue); color: #fff; }
+.header {
+  min-height: 78px;
+  padding-inline: clamp(20px, 5vw, 90px);
+  background: rgba(7,21,33,.93);
+  border-bottom: 1px solid var(--stroke);
+  box-shadow: 0 8px 30px rgba(0,0,0,.13);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.logo { letter-spacing: -.06em; font-weight: 800; white-space: nowrap; }
+.logo span { color: var(--blue-light); }
+.header nav { gap: clamp(12px, 2vw, 30px); }
+.header nav a { font-weight: 600; transition: color var(--transition); }
+.header nav a:hover { color: var(--blue-light); }
+.btn-primary, .btn-login, .btn-detalhes, .btn-trailer, .btn-sessao,
+.admin-secondary, .account-submit {
+  border-radius: 12px;
+  transition: background var(--transition), transform var(--transition),
+              border-color var(--transition), box-shadow var(--transition);
+}
+.btn-primary, .btn-login {
+  background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+  box-shadow: 0 8px 22px rgba(44,130,181,.18);
+}
+.btn-primary:hover:not(:disabled), .btn-login:hover {
+  background: linear-gradient(135deg, #3996ca, var(--blue));
+  box-shadow: 0 12px 30px rgba(44,130,181,.3);
+  transform: translateY(-2px);
+}
+.hero {
+  min-height: min(690px, 85vh);
+  padding: clamp(80px, 10vw, 120px) clamp(24px, 9vw, 140px);
+  gap: 48px;
+  background:
+    radial-gradient(circle at 83% 45%, rgba(44,130,181,.25), transparent 30%),
+    linear-gradient(145deg,#071521 15%,#0c293e 100%);
+  border-bottom: 1px solid var(--stroke);
+}
+.hero-content { position: relative; z-index: 1; }
+.hero h1 { letter-spacing: -.055em; line-height: 1.08; }
+.hero h1 span { color: var(--blue-light); }
+.hero p { color: var(--muted); line-height: 1.8; }
+.tag { color: var(--blue-light); letter-spacing: .15em; font-weight: 800; }
+.hero-decoration {
+  flex: 0 0 auto;
+  width: clamp(190px, 23vw, 300px);
+  height: clamp(190px, 23vw, 300px);
+  border: 1px solid rgba(136,205,246,.4);
+  background: radial-gradient(circle,rgba(44,130,181,.2),rgba(44,130,181,.03));
+  box-shadow: 0 0 100px rgba(44,130,181,.13), inset 0 0 50px rgba(44,130,181,.08);
+}
+.filmes-section, .detalhes, .assentos-section { padding-inline: clamp(20px, 6vw, 100px); }
+.section-heading h2 { letter-spacing: -.035em; }
+.filmes-grid { gap: clamp(18px, 2.5vw, 30px); }
+.filme-card, .detalhes-conteudo, .sala-container, .resumo-compra,
+.checkout-card, .admin-panel, .admin-login-card, .account-card,
+.ticket-card {
+  background: linear-gradient(160deg, rgba(20,50,71,.96), rgba(16,40,58,.98));
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.filme-card { overflow: hidden; }
+.filme-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(136,205,246,.65);
+  box-shadow: 0 24px 55px rgba(0,0,0,.3);
+}
+.filme-poster { background: #0b2232; aspect-ratio: 2/3; height: auto; }
+.filme-poster img { width:100%; height:100%; object-fit:cover; }
+.filme-info { padding: 24px; }
+.filme-info h3 { font-size: 1.15rem; line-height: 1.3; }
+.btn-detalhes { border-color: rgba(136,205,246,.45); background: rgba(44,130,181,.10); }
+.btn-detalhes:hover { border-color: var(--blue-light); }
+.detalhes-conteudo { max-width: 1050px; margin: auto; padding: clamp(24px, 4vw, 48px); }
+.detalhes-conteudo p { color: var(--muted); }
+.sala-container { padding: clamp(20px, 4vw, 44px); }
+.assento { border-radius: 9px 9px 5px 5px; }
+.assento:focus-visible { z-index: 1; }
+.resumo-compra { padding: clamp(22px, 3vw, 34px); }
+.checkout-main, .admin-main { width: min(1200px, 100%); margin-inline: auto; }
+.checkout-intro h1, .admin-welcome h1 { letter-spacing: -.05em; }
+.checkout-card, .admin-panel, .admin-login-card { border-color: var(--stroke); }
+:where(input:not([type="radio"]):not([type="checkbox"]), select, textarea) {
+  border-radius: 11px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+:where(input:not([type="radio"]):not([type="checkbox"]), select, textarea):focus {
+  border-color: var(--blue-light);
+  box-shadow: 0 0 0 3px rgba(136,205,246,.13);
+}
+.payment-option, .admin-tabs button, .account-tab {
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.admin-tabs { gap: 8px; }
+.admin-tabs button { border-radius: 10px; }
+footer { border-top: 1px solid var(--stroke); }
+@media (max-width: 900px) {
+  .hero { min-height: auto; }
+  .hero-decoration { display: none; }
+  .filmes-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .header { position: relative; min-height: 74px; flex-wrap: wrap; gap: 12px; padding-block: 16px; }
+  .header nav { flex-wrap: wrap; gap: 12px 18px; }
+  body { padding-top: 0; }
+}
+@media (max-width: 600px) {
+  .filmes-grid { grid-template-columns: minmax(0,1fr); max-width: 440px; margin-inline: auto; }
+  .filme-poster { max-height: 500px; }
+  .hero { padding: 70px 24px 85px; }
+  .hero h1 { font-size: clamp(36px, 10vw, 52px); }
+  .header nav { width: 100%; }
+  .header nav a { font-size: 13px; }
+  .section-heading h2 { font-size: clamp(25px,7vw,36px); }
+  .mapa-assentos { gap: 7px 4px; }
+  .assento { font-size: clamp(8px, 2vw, 12px); min-width:0; }
+  .resumo-linha { flex-wrap: wrap; }
+  .checkout-fields-two { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* Padrão final: a navegação e o rodapé acompanham o conteúdo. */
+body, body.checkout-body, body.admin-body { padding-bottom: 0; }
+footer { position: relative; inset: auto; min-height: 105px; width: 100%; margin-top: 70px; z-index: auto; }
+.header { position: sticky; top: 0; }
+body, body.admin-body { padding-top: 0; }
+.header nav { align-items: center; }
+.header nav a { white-space: nowrap; }
+.hero { overflow: hidden; position: relative; }
+.hero::after { content: ''; position: absolute; width: 360px; height: 360px; border: 1px solid rgba(136,205,246,.1); border-radius: 50%; right: 8%; top: 18%; pointer-events: none; }
+.hero-decoration { position: relative; z-index: 1; transform: rotate(-7deg); border-radius: 32px; width: clamp(190px,23vw,280px); height: clamp(220px,26vw,330px); }
+.hero-decoration::before { content: 'CINE LOCAL'; position: absolute; top: 22px; left: 0; width: 100%; text-align:center; font-size: 13px; font-weight: 800; letter-spacing: .28em; }
+.hero-decoration::after { content: 'SEU LUGAR É AQUI'; position: absolute; bottom: 20px; width: 100%; left: 0; text-align: center; font-size: 11px; letter-spacing: .16em; font-weight: 700; }
+.hero-decoration > span { display: grid; place-items: center; width: 100px; height: 100px; border-radius: 50%; background: var(--blue); box-shadow: 0 10px 30px rgba(0,0,0,.23); color: white; font-size: 42px; }
+.filmes-section { padding-top: 74px; padding-bottom: 72px; }
+.filme-info p { color: var(--muted); }
+.filme-card { display:flex; flex-direction:column; }
+.filme-info { display:flex; flex-direction:column; flex:1; }
+.filme-info .btn-detalhes { margin-top:auto; }
+.detalhes, .assentos-section { padding-top: 70px; padding-bottom: 60px; }
+.admin-main { margin-top: 46px; }
+.admin-live { border-radius: 999px; }
+.admin-stat, .admin-report-card { border: 1px solid var(--stroke); border-radius: var(--radius); background: linear-gradient(150deg,#15344a,#0c2334); box-shadow: 0 10px 26px rgba(0,0,0,.14); }
+.admin-tabs { overflow-x: auto; scrollbar-width: thin; padding-bottom: 8px; }
+.admin-tabs button { white-space: nowrap; }
+.admin-table-wrap, .admin-table { max-width:100%; }
+.checkout-main { padding-inline: clamp(16px, 3vw, 24px); }
+.tickets-list { display: grid; gap: 20px; }
+.ticket-history-card { margin: 0; }
+.simulation-notice, .account-notice, .admin-demo-note { border-radius: 12px; }
+@media(max-width:900px) { .hero-decoration { display: none; } .header { position: relative; } }
+@media(max-width:600px) { .header { justify-content:center; } .header .logo { margin-right:auto; } .checkout-main { width:100%; } .filme-poster { max-height: 540px; } .admin-main { width:94%; } .admin-tabs { flex-wrap:nowrap; } }
+
+/* =====================================================================
+   CINE LOCAL 3.0 — IDENTIDADE CINEMATOGRÁFICA UNIFICADA
+   Estilo único para catálogo, conta, checkout, ingressos e administração.
+   Tons originais preservados: azul #2C82B5 / #015C91 / #88CDF6.
+   ===================================================================== */
+:root {
+  --background: #080d16;
+  --surface: #111d2c;
+  --blue: #2C82B5;
+  --blue-deep: #015C91;
+  --blue-light: #88CDF6;
+  --blue-soft: #BCE5FF;
+  --white: #fff;
+  --muted: #9cabbe;
+  --stroke: rgba(136,205,246,.13);
+  --surface-raised: #152537;
+  --radius: 16px;
+  --shadow: 0 22px 50px rgba(0,0,0,.3);
+}
+html { scroll-behavior: smooth; scroll-padding-top: 95px; }
+body {background:#080d16; color:#f5f8fd; font-family:'Inter',sans-serif; line-height:1.6;}
+body::before {content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 90% 15%,rgba(44,130,181,.10),transparent 45%);}
+.header { background:rgba(8,13,22,.85); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-bottom:1px solid rgba(136,205,246,.08); box-shadow:none; min-height:78px; padding-inline:clamp(20px,5vw,90px); }
+.logo {font-size:24px;font-weight:800;letter-spacing:-.075em;position:relative;z-index:2}
+.logo span{color:#88CDF6}
+.header nav{position:relative;z-index:2}
+.header nav a{font-size:13px;font-weight:600;color:#b8c4d4;letter-spacing:.015em}
+.header nav a:hover{color:#88CDF6}
+.header-glow{position:absolute;width:220px;height:75px;left:2%;top:0;pointer-events:none;background:radial-gradient(ellipse at top,rgba(44,130,181,.14),transparent 70%)}
+.btn-login,.btn-primary {border:1px solid rgba(136,205,246,.18);border-radius:10px;background:linear-gradient(135deg,#358dbf,#015C91);font-weight:700;color:white;box-shadow:0 10px 25px rgba(1,92,145,.2);transition:transform .2s,box-shadow .2s,background .2s}
+.btn-primary:hover:not(:disabled),.btn-login:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(44,130,181,.34);background:linear-gradient(135deg,#479bc9,#2C82B5)}
+.hero{background:#08121e;min-height:660px;padding:100px clamp(25px,7vw,110px) 110px;display:flex;align-items:center;gap:65px;position:relative;overflow:hidden;isolation:isolate;border-bottom:1px solid rgba(136,205,246,.12)}
+.hero-backdrop{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse at 72% 45%,rgba(44,130,181,.26),transparent 42%),linear-gradient(110deg,#080d16 12%,#0c1b2c 68%,#090e18)}
+.hero-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#080d16 0%,transparent 30%,transparent 80%,rgba(8,13,22,.3));}
+.hero-content {max-width:650px;flex:1 1 52%;position:relative;z-index:3}
+.eyebrow {display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.22em;font-weight:800;color:#88CDF6}
+.live-dot{display:inline-block;width:7px;height:7px;flex-shrink:0;border-radius:50%;background:#88CDF6;box-shadow:0 0 13px #2C82B5}
+.eyebrow-divider{width:28px;height:1px;background:rgba(136,205,246,.35)}
+.hero-kicker{display:block;margin-top:40px;color:#c5d6e4;font-size:11px;font-weight:700;letter-spacing:.18em}
+.hero h1{margin:13px 0 22px;font-size:clamp(41px,5.2vw,78px);font-weight:800;line-height:1.08;letter-spacing:-.065em}
+.hero h1 span{color:#88CDF6}
+.hero p{max-width:510px;font-size:15px;color:#a9bbce;line-height:1.9}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:32px}
+.hero-actions .btn-primary{margin:0;padding:16px 26px}
+.hero-cta span{font-size:12px;margin-right:10px}
+.btn-ghost{display:inline-flex;align-items:center;gap:18px;padding:15px 21px;border:1px solid rgba(167,195,220,.3);border-radius:10px;background:rgba(255,255,255,.035);text-decoration:none;color:#eff7ff;font-size:13px;font-weight:700;transition:background .2s,border-color .2s}
+.btn-ghost:hover{background:rgba(44,130,181,.15);border-color:#88CDF6}
+.hero-info{display:flex;flex-wrap:wrap;gap:23px;margin-top:52px;font-size:11px;color:#849bb1}
+.featured-display{position:relative;flex:1 1 48%;min-width:330px;height:455px;display:grid;place-items:center;perspective:1000px;z-index:1}
+.feature-halo{position:absolute;width:470px;height:470px;max-width:100%;border-radius:50%;background:radial-gradient(circle,rgba(44,130,181,.19),transparent 68%);filter:blur(5px)}
+.featured-poster{position:absolute;width:240px;height:355px;border:1px solid rgba(136,205,246,.23);border-radius:14px;overflow:hidden;background:#163045;box-shadow:0 25px 55px rgba(0,0,0,.5);transform-origin:bottom center}
+.featured-poster img{width:100%;height:100%;object-fit:cover;display:block}
+.poster-main{z-index:3;transform:translateY(-8px) rotate(-1deg);width:250px;height:380px;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 40px rgba(44,130,181,.16)}
+.poster-left{z-index:1;transform:translate(-150px,23px) rotate(-17deg) scale(.87);filter:brightness(.65)}
+.poster-right{z-index:2;transform:translate(150px,25px) rotate(16deg) scale(.87);filter:brightness(.75)}
+.floating-ticket{position:absolute;z-index:4;bottom:3px;padding:10px 17px;border:1px solid rgba(136,205,246,.24);background:rgba(13,35,53,.94);backdrop-filter:blur(12px);border-radius:99px;color:#d3ebff;font-size:11px;font-weight:650;white-space:nowrap}
+.hero-scroll{position:absolute;left:clamp(25px,7vw,110px);bottom:28px;font-size:9px;letter-spacing:.18em;color:#68849b;display:flex;gap:14px;align-items:center}
+.hero-scroll span{font-size:20px;color:#88CDF6}
+.filmes-section{display:block;min-height:450px;padding:82px clamp(24px,6vw,100px) 100px;background:linear-gradient(180deg,#080d16,#0d1521);}
+.filmes-section.hidden {display:none!important}
+.filmes-section .section-heading{display:flex;align-items:end;justify-content:space-between;gap:22px;padding-bottom:24px;margin-bottom:35px;border-bottom:1px solid rgba(136,205,246,.12)}
+.section-eyebrow{margin-bottom:12px}
+.filmes-section h2{margin:0;font-size:clamp(30px,4vw,48px);letter-spacing:-.06em;font-weight:800}
+.filmes-section h2 span{color:#88CDF6}
+.filmes-section .section-heading p{font-size:13px;color:#9aafc3;margin-top:7px}
+.section-decoration{font-size:11px;color:#778da1;white-space:nowrap;padding-bottom:7px}
+.section-decoration-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#2C82B5;margin-right:8px}
+.filmes-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:25px;max-width:1220px;margin:auto}
+.filme-card{background:transparent;border:1px solid rgba(136,205,246,.11);border-radius:14px;box-shadow:none;overflow:hidden;transition:transform .24s,box-shadow .24s,border-color .24s}
+.filme-card:hover{transform:translateY(-8px);border-color:rgba(136,205,246,.45);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.filme-poster{aspect-ratio:2/3;height:auto;max-height:480px;position:relative}
+.filme-poster::after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(8,13,22,.35));pointer-events:none}
+.filme-info{padding:21px 21px 22px;background:#101b2a}
+.filme-info h3{font-size:18px;letter-spacing:-.025em}
+.filme-info p{color:#90a5b8;font-size:12px}
+.btn-detalhes{border:1px solid rgba(136,205,246,.29);border-radius:9px;background:rgba(44,130,181,.1);font-weight:750}
+.btn-detalhes:hover{background:#2C82B5;border-color:#2C82B5}
+.detalhes,.assentos-section{padding:75px clamp(18px,6vw,95px);background:radial-gradient(circle at 90% 0%,rgba(44,130,181,.09),transparent 55%)}
+.detalhes-conteudo,.sala-container,.resumo-compra,.checkout-card,.admin-panel,.admin-login-card,.account-card,.ticket-card{border:1px solid rgba(136,205,246,.15);background:linear-gradient(145deg,#152337,#101a29);border-radius:16px;box-shadow:0 18px 40px rgba(0,0,0,.18)}
+.detalhes-conteudo{max-width:1000px;margin:auto}
+.tela-cinema{box-shadow:0 20px 35px rgba(44,130,181,.12)}
+.resumo-total{border-top:1px solid rgba(136,205,246,.19)}
+.subpage-ribbon{display:flex;align-items:center;gap:12px;color:#96bad4;font-size:10px;font-weight:800;letter-spacing:.16em;padding:0 0 25px;margin-bottom:15px;border-bottom:1px solid rgba(136,205,246,.11)}
+.subpage-ribbon b{color:#2C82B5;padding:0 6px}
+.subpage-ribbon i{margin-left:auto;font-style:normal;font-size:17px;color:#2C82B5}
+.cinema-theme main{position:relative}
+.checkout-main,.admin-main{max-width:1200px;padding:48px clamp(20px,4vw,45px) 90px;margin:auto}
+.checkout-intro{position:relative;padding:20px 0 30px}
+.checkout-intro h1,.admin-welcome h1{font-size:clamp(38px,5vw,58px);line-height:1.12;letter-spacing:-.055em}
+.checkout-intro h1 span{color:#88CDF6}
+.checkout-intro p,.admin-welcome p{color:#9eafc1}
+.checkout-card,.admin-panel,.admin-login-card,.account-card{border-radius:18px}
+.checkout-card{padding:clamp(22px,3vw,38px)}
+.checkout-step{background:#2C82B5}
+.checkout-form input,.account-form input,.admin-form input,.admin-form select,.admin-form textarea{background:#0d1927;border:1px solid rgba(136,205,246,.17);border-radius:10px;color:#fff}
+.checkout-form input:focus,.account-form input:focus,.admin-form input:focus{border-color:#88CDF6;outline:2px solid rgba(136,205,246,.17)}
+.payment-option{background:#101e2e;border-radius:12px;border-color:rgba(136,205,246,.12)}
+.admin-welcome{padding:22px 0 26px}
+.admin-tabs{display:flex;gap:10px;overflow-x:auto;padding-bottom:10px}
+.admin-tabs button{border-radius:11px;white-space:nowrap}
+.admin-stat,.admin-report-card{background:#111f30;border:1px solid rgba(136,205,246,.14);border-radius:14px}
+.account-tabs{border-bottom:1px solid rgba(136,205,246,.15)}
+.account-tab.active{color:#88CDF6}
+.tickets-list{display:grid;gap:22px}
+footer{background:#080d16;border-top:1px solid rgba(136,205,246,.11)}
+@media(max-width:1100px){.hero{gap:22px}.featured-display{transform:scale(.86);transform-origin:right center;min-width:290px}.hero h1{font-size:clamp(40px,5vw,66px)}}
+@media(max-width:850px){.hero{min-height:auto;padding:95px 7% 95px}.featured-display{display:none}.hero-content{max-width:650px}.filmes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.header{position:relative;min-height:75px;flex-wrap:wrap;gap:10px;padding-block:16px}.header nav{flex-wrap:wrap;gap:15px}body{padding-top:0}.section-decoration{display:none}}
+@media(max-width:560px){.hero{padding:76px 22px 95px}.hero-kicker{margin-top:30px}.hero h1{font-size:clamp(39px,11vw,54px)}.hero-info{margin-top:38px;gap:12px}.filmes-section{padding:55px 18px 75px}.filmes-grid{grid-template-columns:1fr;max-width:410px}.filme-poster{max-height:490px}.filmes-section h2{font-size:37px}.header nav{gap:10px 17px}.header nav a{font-size:12px}.header .btn-login{padding:10px 15px}.checkout-main,.admin-main{padding-inline:17px}.subpage-ribbon{font-size:9px;letter-spacing:.1em}.mapa-assentos{gap:7px 4px}.assento{min-width:0;font-size:9px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.featured-poster,.filme-card,.btn-primary,.btn-login{transition:none!important}}

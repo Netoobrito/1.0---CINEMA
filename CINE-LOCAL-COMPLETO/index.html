@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+   Cine Local | Cinema
+  </title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<meta content="#071521" name="theme-color"/>
+</head>
+<body>
+<header class="header">
+<a class="logo" href="#" onclick="inicio(); return false;">
+    CINE
+    <span>
+     LOCAL
+    </span>
+</a>
+<nav>
+<a href="#" onclick="inicio(); return false;">
+     Início
+    </a>
+<a href="#" onclick="mostrarFilmes(); return false;">
+     Filmes
+    </a>
+<a href="meus-ingressos.html">
+     Meus ingressos
+    </a>
+<a href="admin.html">
+     Administração
+    </a>
+<button class="btn-login" id="btn-conta" onclick="abrirConta()">
+     Entrar
+    </button>
+</nav>
+</header>
+<main>
+<!-- APRESENTAÇÃO -->
+<section class="hero" id="inicio">
+<div aria-hidden="true" class="hero-backdrop"></div>
+<div class="hero-content">
+<div class="eyebrow"><span class="live-dot"></span> CINE LOCAL <span class="eyebrow-divider"></span> A MAGIA DO CINEMA</div>
+<span class="hero-kicker">SEU PRÓXIMO FILME FAVORITO ESTÁ AQUI</span>
+<h1>Grandes histórias.<br/><span>Grandes momentos.</span></h1>
+<p>Do primeiro trailer à última cena. Descubra nossa programação, escolha sua sessão e garanta seu lugar na tela grande.</p>
+<div class="hero-actions">
+<button class="btn-primary hero-cta" onclick="mostrarFilmes()" type="button"><span aria-hidden="true">▶</span> Explorar filmes</button>
+<a class="btn-ghost" href="meus-ingressos.html">Meus ingressos <span aria-hidden="true">↗</span></a>
+</div>
+<div class="hero-info"><span>✦ Experiência cinematográfica</span><span>◷ Sessões todos os dias</span></div>
+</div>
+<div aria-hidden="true" class="featured-display">
+<div class="feature-halo"></div>
+<div class="featured-poster poster-side poster-left"><img alt="" src="https://www.impawards.com/2026/posters/clayface_xlg.jpg"/></div>
+<div class="featured-poster poster-main"><img alt="" src="https://www.sonypictures.com.br/sites/brazil/files/2026-09/SMBND_BRA_1400%20X%202100%20%28Vertical%29.jpg"/></div>
+<div class="featured-poster poster-side poster-right"><img alt="" src="https://lumiere-a.akamaihd.net/v1/images/g_movies_toystory5_payoff_poster_bb9dcbe9.jpeg?region=0%2C0%2C1300%2C730"/></div>
+<div class="floating-ticket">✦   A sua próxima sessão começa aqui</div>
+</div>
+<div aria-hidden="true" class="hero-scroll">ROLE PARA EXPLORAR <span>↓</span></div>
+</section>
+<!-- CATÁLOGO DE FILMES -->
+<section class="filmes-section" id="filmes">
+<div class="section-heading"><div><div class="eyebrow section-eyebrow"><span class="live-dot"></span> EM EXIBIÇÃO AGORA</div><h2>Em <span>cartaz</span></h2><p>Escolha sua história, descubra os horários e reserve seu assento.</p></div><div aria-hidden="true" class="section-decoration"><span class="section-decoration-dot"></span> A programação que você ama</div></div>
+<div class="filmes-grid" id="lista-filmes">
+</div>
+</section>
+<!-- DETALHES DO FILME -->
+<section class="detalhes hidden" id="detalhes">
+<button class="btn-voltar" onclick="mostrarFilmes()">
+     ← Voltar aos filmes
+    </button>
+<div id="conteudo-detalhes">
+</div>
+</section>
+<!-- ESCOLHA DAS CADEIRAS -->
+<section class="assentos-section hidden" id="assentos">
+<button class="btn-voltar" onclick="voltarDetalhes()">
+     ← Voltar ao filme
+    </button>
+<div class="section-heading">
+<span class="tag">
+      RESERVA DE INGRESSOS
+     </span>
+<h2>
+      Escolha suas cadeiras
+     </h2>
+<p id="informacao-sessao">
+</p>
+</div>
+<div class="sala-container">
+<div class="tela-cinema">
+<span>
+       TELA DO CINEMA
+      </span>
+</div>
+<p class="orientacao">
+      Escolha seus lugares abaixo
+     </p>
+<div class="mapa-assentos" id="mapa-assentos">
+</div>
+<div class="legenda">
+<div>
+<span class="legenda-cor disponivel">
+</span>
+       Disponível
+      </div>
+<div>
+<span class="legenda-cor selecionada">
+</span>
+       Selecionada
+      </div>
+<div>
+<span class="legenda-cor ocupada">
+</span>
+       Ocupada
+      </div>
+</div>
+</div>
+<div class="resumo-compra">
+<h3>
+      Resumo da compra
+     </h3>
+<div class="resumo-linha">
+<span>
+       Filme:
+      </span>
+<strong id="resumo-filme">
+       -
+      </strong>
+</div>
+<div class="resumo-linha">
+<span>
+       Sessão:
+      </span>
+<strong id="resumo-horario">
+       -
+      </strong>
+</div>
+<div class="resumo-linha">
+<span>
+       Cadeiras:
+      </span>
+<strong id="resumo-cadeiras">
+       Nenhuma selecionada
+      </strong>
+</div>
+<div class="resumo-linha">
+<span>
+       Quantidade:
+      </span>
+<strong id="resumo-quantidade">
+       0
+      </strong>
+</div>
+<div class="resumo-total">
+<span>
+       Valor total:
+      </span>
+<strong id="resumo-total">
+       R$ 0,00
+      </strong>
+</div>
+<button class="btn-primary btn-continuar" disabled="" id="btn-continuar" onclick="continuarCompra()">
+      Continuar para pagamento →
+     </button>
+</div>
+</section>
+</main>
+<footer>
+<div class="logo">
+    CINE
+    <span>
+     LOCAL
+    </span>
+</div>
+<p>
+    Grandes histórias merecem uma grande tela.
+   </p>
+<small>
+    © 2026 Cine Local. Desenvolvido por
+    <strong>
+     Edvaldo da Silva Brito Neto
+    </strong>
+    .
+      Todos os direitos reservados.
+   </small>
+</footer>
+<script src="shared.js"></script>
+<script src="script.js">
+</script>
+<script src="navigation.js"></script>
+</body>
+</html>

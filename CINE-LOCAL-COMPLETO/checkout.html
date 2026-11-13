@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+   Finalizar compra | Cine Local
+  </title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<meta content="#071521" name="theme-color"/>
+</head>
+<body class="checkout-body cinema-theme">
+<header class="header">
+<a class="logo" href="index.html">
+    CINE
+    <span>
+     LOCAL
+    </span>
+</a>
+<nav>
+<a href="index.html">
+     Voltar ao cinema
+    </a>
+</nav>
+<span aria-hidden="true" class="header-glow"></span></header>
+<main class="checkout-main"><div class="subpage-ribbon"><span class="live-dot"></span><span> CINE LOCAL <b> / </b> SUA SESSÃO ESTÁ CHEGANDO</span><i aria-hidden="true">✦</i></div>
+<section class="checkout-layout" id="checkout-conteudo">
+<div class="checkout-intro">
+<span class="tag">
+      ÚLTIMA ETAPA
+     </span>
+<h1>
+      Finalize sua
+      <span>
+       compra.
+      </span>
+</h1>
+<p>
+      Confira seus dados e escolha como deseja simular o pagamento.
+     </p>
+</div>
+<div class="checkout-grid">
+<form class="checkout-form" id="form-checkout">
+<section class="checkout-card">
+<div class="checkout-card-heading">
+<span class="checkout-step">
+         1
+        </span>
+<div>
+<h2>
+          Seus dados
+         </h2>
+<p>
+          Precisamos dessas informações para identificar seu ingresso.
+         </p>
+</div>
+</div>
+<label for="nome">
+        Nome completo
+       </label>
+<input autocomplete="name" id="nome" minlength="3" name="nome" placeholder="Digite seu nome completo" required="" type="text"/>
+<div class="checkout-fields-two">
+<div>
+<label for="cpf">
+          CPF
+         </label>
+<input id="cpf" inputmode="numeric" maxlength="14" name="cpf" placeholder="000.000.000-00" required="" type="text"/>
+</div>
+<div>
+<label for="email">
+          E-mail
+         </label>
+<input autocomplete="email" id="email" name="email" placeholder="seuemail@exemplo.com" required="" type="email"/>
+</div>
+</div>
+</section>
+<section class="checkout-card">
+<div class="checkout-card-heading">
+<span class="checkout-step">
+         2
+        </span>
+<div>
+<h2>
+          Forma de pagamento
+         </h2>
+<p>
+          Escolha uma opção para a simulação acadêmica.
+         </p>
+</div>
+</div>
+<div class="payment-options">
+<label class="payment-option">
+<input checked="" name="pagamento" type="radio" value="PIX"/>
+<span class="payment-icon">
+          ▦
+         </span>
+<span>
+<strong>
+           PIX
+          </strong>
+<small>
+           Confirmação simulada imediata
+          </small>
+</span>
+<span class="payment-check">
+          ✓
+         </span>
+</label>
+<label class="payment-option">
+<input name="pagamento" type="radio" value="Cartão de crédito"/>
+<span class="payment-icon">
+          ▣
+         </span>
+<span>
+<strong>
+           Cartão de crédito
+          </strong>
+<small>
+           Pagamento fictício para demonstração
+          </small>
+</span>
+<span class="payment-check">
+          ✓
+         </span>
+</label>
+</div>
+<div class="simulation-notice">
+<strong>
+         Ambiente de demonstração.
+        </strong>
+        Nenhuma cobrança real será feita e nenhum dado bancário será solicitado.
+       </div>
+</section>
+<label class="terms-check">
+<input id="termos" required="" type="checkbox"/>
+<span>
+        Confirmo que os dados informados estão corretos e entendo que este é um pagamento simulado.
+       </span>
+</label>
+<button class="btn-primary checkout-submit" type="submit">
+       Confirmar compra simulada
+       <span>
+        →
+       </span>
+</button>
+<a class="checkout-back" href="index.html?voltar=assentos">
+       ← Voltar e alterar os assentos
+      </a>
+</form>
+<aside class="order-summary checkout-card">
+<span class="tag">
+       SEU PEDIDO
+      </span>
+<h2>
+       Resumo da compra
+      </h2>
+<div class="order-film">
+<div class="order-film-icon">
+        ▶
+       </div>
+<div>
+<strong id="pedido-filme">
+         Carregando...
+        </strong>
+<small id="pedido-sessao">
+         Sessão
+        </small>
+</div>
+</div>
+<div class="order-line">
+<span>
+        Cadeiras
+       </span>
+<strong id="pedido-cadeiras">
+        -
+       </strong>
+</div>
+<div class="order-line">
+<span>
+        Quantidade
+       </span>
+<strong id="pedido-quantidade">
+        0
+       </strong>
+</div>
+<div class="order-line">
+<span>
+        Valor por ingresso
+       </span>
+<strong id="pedido-unitario">
+        R$ 0,00
+       </strong>
+</div>
+<div class="order-total">
+<span>
+        Total
+       </span>
+<strong id="pedido-total">
+        R$ 0,00
+       </strong>
+</div>
+<p class="order-footnote">
+       Seus assentos só serão marcados como ocupados após a confirmação desta simulação.
+      </p>
+</aside>
+</div>
+</section>
+<section class="success-card hidden" id="compra-sucesso">
+<div class="success-symbol">
+     ✓
+    </div>
+<span class="tag">
+     COMPRA CONCLUÍDA
+    </span>
+<h1>
+     Ingresso
+     <span>
+      confirmado!
+     </span>
+</h1>
+<p class="success-message">
+     Sua compra foi registrada nesta demonstração do Cine Local.
+    </p>
+<div class="digital-ticket">
+<div class="ticket-top">
+<div>
+<span class="ticket-label">
+        CINE LOCAL
+       </span>
+<h2 id="ticket-filme">
+        Filme
+       </h2>
+<p id="ticket-sessao">
+        Data e sessão
+       </p>
+</div>
+<span class="ticket-status">
+       CONFIRMADO
+      </span>
+</div>
+<div class="ticket-divider">
+</div>
+<div class="ticket-details">
+<div>
+<small>
+        CLIENTE
+       </small>
+<strong id="ticket-cliente">
+        -
+       </strong>
+</div>
+<div>
+<small>
+        CADEIRAS
+       </small>
+<strong id="ticket-cadeiras">
+        -
+       </strong>
+</div>
+<div>
+<small>
+        PAGAMENTO
+       </small>
+<strong id="ticket-pagamento">
+        -
+       </strong>
+</div>
+<div>
+<small>
+        TOTAL
+       </small>
+<strong id="ticket-total">
+        -
+       </strong>
+</div>
+</div>
+<div class="ticket-code-area">
+<div class="ticket-code" id="ticket-code">
+       CL-000000
+      </div>
+<small>
+       APRESENTE ESTE CÓDIGO NA BILHETERIA
+      </small>
+</div>
+</div>
+<p class="demo-warning">
+     Este é um ingresso demonstrativo. O código não representa uma compra real nem garante entrada no cinema.
+    </p>
+<a class="btn-primary success-home" href="index.html">
+     Voltar ao início
+    </a>
+</section>
+</main>
+<footer>
+<div class="logo">
+    CINE
+    <span>
+     LOCAL
+    </span>
+</div>
+<p>
+    Grandes histórias merecem uma grande tela.
+   </p>
+<small>
+    © 2026 Cine Local. Desenvolvido por
+    <strong>
+     Edvaldo da Silva Brito Neto
+    </strong>
+    . Todos os direitos reservados.
+   </small>
+</footer>
+<script src="shared.js"></script>
+<script src="checkout.js">
+</script>
+</body>
+</html>

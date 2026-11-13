@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+   Minha conta | Cine Local
+  </title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<meta content="#071521" name="theme-color"/>
+</head>
+<body class="checkout-body cinema-theme">
+<header class="header">
+<a class="logo" href="index.html">
+    CINE
+    <span>
+     LOCAL
+    </span>
+</a>
+<nav>
+<a href="index.html">
+     Voltar ao cinema
+    </a>
+</nav>
+<span aria-hidden="true" class="header-glow"></span></header>
+<main class="checkout-main account-main"><div class="subpage-ribbon"><span class="live-dot"></span><span> CINE LOCAL <b> / </b> ACESSO À SUA CONTA</span><i aria-hidden="true">✦</i></div>
+<section class="checkout-intro">
+<span class="tag">
+     ÁREA DO CLIENTE
+    </span>
+<h1>
+     Acesse sua
+     <span>
+      conta.
+     </span>
+</h1>
+<p>
+     Entre ou crie uma conta para continuar sua compra e acompanhar seus ingressos.
+    </p>
+</section>
+<section class="checkout-card account-card">
+<div class="account-tabs">
+<button class="account-tab active" id="tab-login" type="button">
+      Entrar
+     </button>
+<button class="account-tab" id="tab-cadastro" type="button">
+      Criar conta
+     </button>
+</div>
+<form class="account-form" id="form-login">
+<h2>
+      Bem-vindo de volta!
+     </h2>
+<p>
+      Informe os dados da sua conta Cine Local.
+     </p>
+<label for="login-email">
+      E-mail
+     </label>
+<input autocomplete="email" id="login-email" name="email" placeholder="seuemail@exemplo.com" required="" type="email"/>
+<label for="login-senha">
+      Senha
+     </label>
+<input autocomplete="current-password" id="login-senha" name="senha" placeholder="Digite sua senha" required="" type="password"/>
+<button class="btn-primary account-submit" type="submit">
+      Entrar na conta →
+     </button>
+</form>
+<form class="account-form hidden" id="form-cadastro">
+<h2>
+      Crie sua conta
+     </h2>
+<p>
+      Faça seu cadastro para comprar e consultar seus ingressos.
+     </p>
+<label for="cadastro-nome">
+      Nome completo
+     </label>
+<input autocomplete="name" id="cadastro-nome" minlength="3" name="nome" placeholder="Seu nome completo" required="" type="text"/>
+<label for="cadastro-email">
+      E-mail
+     </label>
+<input autocomplete="email" id="cadastro-email" name="email" placeholder="seuemail@exemplo.com" required="" type="email"/>
+<label for="cadastro-cpf">
+      CPF
+     </label>
+<input id="cadastro-cpf" inputmode="numeric" maxlength="14" name="cpf" placeholder="000.000.000-00" required="" type="text"/>
+<label for="cadastro-senha">
+      Senha
+     </label>
+<input autocomplete="new-password" id="cadastro-senha" minlength="6" name="senha" placeholder="Crie uma senha (mínimo 6 caracteres)" required="" type="password"/>
+<label for="cadastro-confirmar">
+      Confirmar senha
+     </label>
+<input autocomplete="new-password" id="cadastro-confirmar" minlength="6" name="confirmar" placeholder="Digite a senha novamente" required="" type="password"/>
+<button class="btn-primary account-submit" type="submit">
+      Criar minha conta →
+     </button>
+</form>
+<p aria-live="polite" class="account-message" id="mensagem-conta">
+</p>
+<p class="account-notice">
+     Projeto acadêmico: o cadastro é demonstrativo e os dados ficam salvos apenas neste navegador. Não use senha real.
+    </p>
+</section>
+</main>
+<footer>
+<div class="logo">
+    CINE
+    <span>
+     LOCAL
+    </span>
+</div>
+<p>
+    Grandes histórias merecem uma grande tela.
+   </p>
+<small>
+    © 2026 Cine Local. Desenvolvido por
+    <strong>
+     Edvaldo da Silva Brito Neto
+    </strong>
+    . Todos os direitos reservados.
+   </small>
+</footer>
+<script src="shared.js"></script>
+<script src="conta.js">
+</script>
+</body>
+</html>

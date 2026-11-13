@@ -7,8 +7,8 @@ const STORAGE_COMPRA = "cineLocalCompraPendente";
 const STORAGE_ASSENTOS = "cineLocalAssentos";
 const STORAGE_PEDIDOS = "cineLocalPedidos";
 
-const compra = JSON.parse(localStorage.getItem(STORAGE_COMPRA) || "null");
-const usuarioLogado = JSON.parse(localStorage.getItem("cineLocalUsuarioLogado") || "null");
+const compra = CineLocal.ler(STORAGE_COMPRA, null);
+const usuarioLogado = CineLocal.ler(CineLocal.CHAVES.usuario, null);
 
 if (!usuarioLogado) {
   window.location.href = "conta.html?redirect=checkout";
@@ -76,16 +76,20 @@ if (campoCPF) {
 }
 
 function gerarCodigo() {
-  const parteAleatoria = Math.floor(100000 + Math.random() * 900000);
+  const parteAleatoria = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).toUpperCase().padStart(7, "0");
   return `CL-${parteAleatoria}`;
 }
 
 function finalizarCompra(evento) {
   evento.preventDefault();
   if (!form.reportValidity()) return;
-  if (!compra) return;
+  if (!compra || !usuarioLogado || !Array.isArray(compra.cadeiras) || compra.cadeiras.length === 0) return;
+  if (CineLocal.sessaoEncerrada(compra.dataSessao, compra.sessao)) {
+    alert("Esta sessão já encerrou. Escolha outra data ou horário.");
+    return;
+  }
 
-  const ocupacao = JSON.parse(localStorage.getItem(STORAGE_ASSENTOS) || "{}");
+  const ocupacao = CineLocal.ler(STORAGE_ASSENTOS, {});
   const cadeirasOcupadas = ocupacao[compra.chaveOcupacao] || [];
   const conflito = compra.cadeiras.filter(cadeira => cadeirasOcupadas.includes(cadeira));
 
@@ -116,12 +120,12 @@ function finalizarCompra(evento) {
 
   // Nesta versão acadêmica, a confirmação é simulada: não há cobrança real.
   ocupacao[compra.chaveOcupacao] = [...new Set([...cadeirasOcupadas, ...compra.cadeiras])];
-  localStorage.setItem(STORAGE_ASSENTOS, JSON.stringify(ocupacao));
+  CineLocal.salvar(STORAGE_ASSENTOS, ocupacao);
 
-  const pedidos = JSON.parse(localStorage.getItem(STORAGE_PEDIDOS) || "[]");
+  const pedidos = CineLocal.ler(STORAGE_PEDIDOS, []);
   pedidos.push(pedido);
-  localStorage.setItem(STORAGE_PEDIDOS, JSON.stringify(pedidos));
-  localStorage.setItem("cineLocalUltimoPedido", JSON.stringify(pedido));
+  CineLocal.salvar(STORAGE_PEDIDOS, pedidos);
+  CineLocal.salvar("cineLocalUltimoPedido", pedido);
   localStorage.removeItem(STORAGE_COMPRA);
 
   mostrarIngresso(pedido);
